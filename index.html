@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#fbfaf7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="便便日历" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <title>便便日历</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">POOP CALENDAR</p>
+        <h1>便便日历</h1>
+        <p class="subtitle">只记哪天拉了。就这么简单。</p>
+      </div>
+      <button class="ghost-btn" id="todayBtn">今天</button>
+    </header>
+
+    <main>
+      <section class="checkin-card">
+        <div class="checkin-copy">
+          <p id="todayDate" class="today-date">—</p>
+          <h2 id="todayStatus">今天还没记录</h2>
+          <p id="lastText" class="muted">开始记录后，这里会显示距离上一次多久。</p>
+        </div>
+        <button class="checkin-btn" id="checkinBtn" aria-pressed="false">
+          <span class="poop">💩</span>
+          <span id="checkinLabel">今天拉了</span>
+        </button>
+      </section>
+
+      <section class="card calendar-card">
+        <div class="calendar-head">
+          <button class="nav-btn" id="prevMonth" aria-label="上个月">‹</button>
+          <div class="month-copy">
+            <h2 id="monthTitle">—</h2>
+            <p id="monthSummary" class="muted">—</p>
+          </div>
+          <button class="nav-btn" id="nextMonth" aria-label="下个月">›</button>
+        </div>
+
+        <div class="weekdays" aria-hidden="true">
+          <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+        </div>
+        <div id="calendar" class="calendar"></div>
+        <p class="calendar-tip">点任意一天即可补记或取消。● 表示那天有排便。</p>
+      </section>
+
+      <section class="card stats-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">自动统计</p>
+            <h2>最近 30 天</h2>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat">
+            <strong id="days30">0</strong>
+            <span>天有记录</span>
+          </div>
+          <div class="stat">
+            <strong id="avgGap">—</strong>
+            <span>平均间隔 / 天</span>
+          </div>
+          <div class="stat">
+            <strong id="currentGap">—</strong>
+            <span>距上次 / 天</span>
+          </div>
+        </div>
+        <div class="note" id="trendNote">数据够多以后，这里只做频率趋势提示，不要求你记录任何细节。</div>
+      </section>
+
+      <details class="card data-card">
+        <summary>数据备份</summary>
+        <div class="data-actions">
+          <button class="secondary-btn" id="exportBtn">导出记录</button>
+          <label class="secondary-btn file-label">导入记录<input type="file" id="importInput" accept="application/json" hidden></label>
+        </div>
+        <p class="privacy-note">记录默认只存在这个浏览器里，不上传服务器。清除浏览器数据或换手机前可以先导出一份。</p>
+      </details>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
